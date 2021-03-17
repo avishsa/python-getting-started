@@ -1,5 +1,9 @@
 from django.db import models
 
 # Create your models here.
-class Greeting(models.Model):
-    when = models.DateTimeField("date created", auto_now_add=True)
+class Forecast(models.Model):
+    lon = models.DecimalField(max_digits=5, decimal_places=2)
+    lat = models.DecimalField(max_digits=5, decimal_places=2)
+    forecast_time = models.DateTimeField()
+    temperature = models.DecimalField(max_digits=5, decimal_places=2) 
+    precipitation = models.DecimalField(max_digits=5, decimal_places=2) 

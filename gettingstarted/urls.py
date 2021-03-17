@@ -17,6 +17,7 @@ import forecast.views
 urlpatterns = [
     path("", hello.views.index, name="index"),
     path("weather/data", forecast.views.index, name="index"),
+    path("weather/seed", forecast.views.seed, name="seed"),
     #path("db/", hello.views.db, name="db"),
     #path("admin/", admin.site.urls),
 ]
