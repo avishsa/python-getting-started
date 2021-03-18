@@ -30,7 +30,7 @@ def summarize(request):
     return JsonResponse(get_sum(lon,lat),safe=False)
 
 def seed(request):
-    filenames = ["forecast\\file1.csv"]#, "forecast\\file2.csv", "forecast\\file2.csv"]
+    filenames = ["file1.csv"]#, "forecast\\file2.csv", "forecast\\file2.csv"]
     for fn in filenames:
         with open(fn) as f:            
             reader = csv.reader(f , delimiter=',')
