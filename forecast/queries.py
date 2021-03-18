@@ -23,7 +23,6 @@ def get_sum(lon,lat):
             }
         }
     fc_qs = Forecastsum.objects.filter(lon=lon,lat=lat)
-    return fc_qs.aggregate(Max('Temperature'))
     if(len(list(fc_qs)) == 0):
         fcs_qs = Forecast.objects.filter(lon=lon,lat=lat)
         temp_max = fcs_qs.aggregate(Max('Temperature'))["Temperature__max"]
