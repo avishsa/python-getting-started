@@ -22,7 +22,7 @@ def get_sum(lon,lat):
                 "Precipitation":pAvg
             }
         }
-    return list(Forecastsum.objects.filter(lon=lon,lat=lat))
+    return list(Forecast.objects.filter(lon=lon,lat=lat))
     if(len(list(fc_qs)) == 0):
         fcs_qs = Forecast.objects.filter(lon=lon,lat=lat)
         temp_max = fcs_qs.aggregate(Max('Temperature'))["Temperature__max"]
