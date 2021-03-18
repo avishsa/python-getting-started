@@ -10,16 +10,13 @@ import csv
 import datetime
 import time
 
-import dateutil.parser
 from .utils import date_formatter
-def default(o):
-    if isinstance(o, (datetime.date, datetime.datetime)):
-        return o.isoformat()
+
 
 # Create your views here.
 def index(request):
     return HttpResponse(json.dumps({'msg':'Hello world'}), content_type="application/json")
-    #return render(request, "index.html")
+
 def data(request):
     lat = request.GET.get('lat')
     lon = request.GET.get('lon')
@@ -33,7 +30,6 @@ def seed(request):
             reader = csv.reader(f , delimiter=',')
             line_count = 0
             for row in reader:
-                print(row[2])
                 if line_count == 0:            
                     line_count += 1
                     continue
