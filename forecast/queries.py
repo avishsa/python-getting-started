@@ -25,6 +25,8 @@ def get_sum(lon,lat):
     return list(Forecast.objects.filter(lon=lon,lat=lat))
     if(len(list(fc_qs)) == 0):
         fcs_qs = Forecast.objects.filter(lon=lon,lat=lat)
+        if(len(list(fcs))):
+            return {'msg':'not found location'}
         temp_max = fcs_qs.aggregate(Max('Temperature'))["Temperature__max"]
         temp_min = fcs_qs.aggregate(Min('Temperature'))["Temperature__min"]
         temp_avg = fcs_qs.aggregate(Avg('Temperature'))["Temperature__avg"]
