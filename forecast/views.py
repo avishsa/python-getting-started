@@ -20,18 +20,18 @@ def index(request):
 def data(request):
     lat = request.GET.get('lat')
     lon = request.GET.get('lon')
-    fc_qs = Forecast.objects.filter(lon=lon,lat=lat).values("forecast_time", "temperature","precipitation")
+    fc_qs = Forecast.objects.filter(lon=lon,lat=lat).values("forecastTime", "Temperature","Precipitation")
     return JsonResponse(list(fc_qs),safe=False)
 def summarize(request):
     lat = request.GET.get('lat')
     lon = request.GET.get('lon')
     fc_qs = Forecast.objects.filter(lon=lon,lat=lat)
-    temp_max = fc_qs.aggregate(Max('temperature'))["temperature__max"]
-    temp_min = fc_qs.aggregate(Min('temperature'))["temperature__min"]
-    temp_avg = fc_qs.aggregate(Avg('temperature'))["temperature__avg"]
-    preci_max = fc_qs.aggregate(Max('precipitation'))["precipitation__max"]
-    preci_min = fc_qs.aggregate(Min('precipitation'))["precipitation__min"]
-    preci_avg = fc_qs.aggregate(Avg('precipitation'))["precipitation__avg"]
+    temp_max = fc_qs.aggregate(Max('Temperature'))["temperature__max"]
+    temp_min = fc_qs.aggregate(Min('Temperature'))["temperature__min"]
+    temp_avg = round(fc_qs.aggregate(Avg('Temperature'))["temperature__avg"],2)
+    preci_max = fc_qs.aggregate(Max('Precipitation'))["precipitation__max"]
+    preci_min = fc_qs.aggregate(Min('Precipitation'))["precipitation__min"]
+    preci_avg = round(fc_qs.aggregate(Avg('Precipitation'))["precipitation__avg"],2)
     json_sum ={
         'max':{
             "Temperature":temp_max,
@@ -60,9 +60,9 @@ def seed(request):
                 new_forecast = Forecast(
                     lon = row[0],
                     lat = row[1],
-                    forecast_time = date_formatter(row[2]),
-                    temperature = row[3] ,
-                    precipitation = row[4] 
+                    forecastTime = date_formatter(row[2]),
+                    Temperature = row[3] ,
+                    Precipitation = row[4] 
                     ) 
                 new_forecast.save()
     print("done")

@@ -4,6 +4,6 @@ from django.db import models
 class Forecast(models.Model):
     lon = models.FloatField(verbose_name="lon")
     lat = models.FloatField(verbose_name="lat")
-    forecast_time = models.DateTimeField(verbose_name="forecast time")
-    temperature = models.FloatField(verbose_name="temperature") 
-    precipitation = models.FloatField(verbose_name="precipitation") 
+    forecastTime = models.DateTimeField(verbose_name="forecast time")
+    Temperature = models.FloatField(verbose_name="temperature") 
+    Precipitation = models.FloatField(verbose_name="precipitation") 
