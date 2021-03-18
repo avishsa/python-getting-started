@@ -2,14 +2,15 @@ from django.http import HttpResponse,JsonResponse
 import csv
 
 from .models import Forecast,Forecastsum
-from .queries import get_data,get_sum
+from .queries import get_data,get_sum,get_count
 from .insertions import insert_forecast
 from .validations import validLatAndLon
 
 # Create your views here.
 def index(request):
     return HttpResponse(json.dumps({'msg':'Hello world'}), content_type="application/json")
-
+def count_data(request):
+    return JsonResponse(get_count())
 def data(request):
     lat = request.GET.get('lat')
     lon = request.GET.get('lon')

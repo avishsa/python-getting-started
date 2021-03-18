@@ -4,6 +4,8 @@ from django.db.models import Max,Min,Avg
 from .models import Forecast,Forecastsum
 from .insertions import insert_sumData
 
+def get_count():
+    return {'num forecasts':Forecast.objects.count()}
 def get_data(lon, lat):
     return list(Forecast.objects.filter(lon=lon,lat=lat).values("forecastTime", "Temperature","Precipitation"))
 def get_sum(lon,lat):

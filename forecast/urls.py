@@ -18,6 +18,6 @@ urlpatterns = [
     path("weather/summarize", forecast.views.summarize, name="summarize"),
     
     path("weather/seed", forecast.views.seed, name="seed"),
-
+    path("weather/count", forecast.views.count_data, name="count_data"),
     #path("admin/", admin.site.urls),
 ]
