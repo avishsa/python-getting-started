@@ -25,13 +25,13 @@ def get_sum(lon,lat):
     fc_qs = Forecastsum.objects.filter(lon=lon,lat=lat)
     return fc_qs.aggregate(Max('Temperature'))
     if(len(list(fc_qs)) == 0):
-        fc_qs = Forecast.objects.filter(lon=lon,lat=lat)
-        temp_max = fc_qs.aggregate(Max('Temperature'))["Temperature__max"]
-        temp_min = fc_qs.aggregate(Min('Temperature'))["Temperature__min"]
-        temp_avg = fc_qs.aggregate(Avg('Temperature'))["Temperature__avg"]
-        preci_max = fc_qs.aggregate(Max('Precipitation'))["Precipitation__max"]
-        preci_min = fc_qs.aggregate(Min('Precipitation'))["Precipitation__min"]
-        preci_avg = fc_qs.aggregate(Avg('Precipitation'))["Precipitation__avg"]
+        fcs_qs = Forecast.objects.filter(lon=lon,lat=lat)
+        temp_max = fcs_qs.aggregate(Max('Temperature'))["Temperature__max"]
+        temp_min = fcs_qs.aggregate(Min('Temperature'))["Temperature__min"]
+        temp_avg = fcs_qs.aggregate(Avg('Temperature'))["Temperature__avg"]
+        preci_max = fcs_qs.aggregate(Max('Precipitation'))["Precipitation__max"]
+        preci_min = fcs_qs.aggregate(Min('Precipitation'))["Precipitation__min"]
+        preci_avg = fcs_qs.aggregate(Avg('Precipitation'))["Precipitation__avg"]
         insert_sumData(lon,lat,temp_max,temp_min,temp_avg,preci_max,preci_min,preci_avg)
         return get_json(temp_max,temp_min,temp_avg,preci_max,preci_min,preci_avg)
     return get_json(fc_qs[0],fc_qs[1],fc_qs[2],fc_qs[3],fc_qs[4],fc_qs[5])
