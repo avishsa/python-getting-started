@@ -1,5 +1,6 @@
 from django.http import HttpResponse,JsonResponse
 import csv
+import os
 
 from .models import Forecast,Forecastsum
 from .queries import get_data,get_sum,get_count
@@ -30,8 +31,11 @@ def summarize(request):
     return JsonResponse(get_sum(lon,lat),safe=False)
 
 def seed(request):
-    filenames = ["forecast\\file1.csv", "forecast\\file2.csv", "forecast\\file2.csv"]
+    module_dir = os.path.dirname(__file__)  # get current directory
+    
+    filenames = ["file1.csv", "file2.csv", "file2.csv"]
     for fn in filenames:
+        file_path = os.path.join(module_dir, fn)
         with open(fn) as f:            
             reader = csv.reader(f , delimiter=',')
             line_count = 0
