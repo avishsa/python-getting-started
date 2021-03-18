@@ -22,7 +22,7 @@ def get_sum(lon,lat):
                 "Precipitation":pAvg
             }
         }
-    
+    fc_qs = list(Forecast.objects.filter(lon=lon,lat=lat))
     if(len(list(fc_qs)) == 0):
         fcs_qs = Forecast.objects.filter(lon=lon,lat=lat)
         if(len(list(fcs)) ==0):
