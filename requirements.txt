@@ -2,3 +2,4 @@ django
 gunicorn
 django-heroku
 numpy==1.6.2
+pandas
