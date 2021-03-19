@@ -9,6 +9,7 @@ def get_count():
 def get_data(lon, lat):
     return list(Forecast.objects.filter(lon=lon,lat=lat).values("forecastTime", "Temperature","Precipitation"))
 def get_sum(lon,lat):
+    return get_data(lon,lat)
     def get_json(tMax,tMin,tAvg,pMax,pMin,pAvg):
         return {
             'max':{
