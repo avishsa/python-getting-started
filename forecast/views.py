@@ -38,8 +38,8 @@ def seed(request):
     filenames = ["file1.csv", "file2.csv", "file2.csv"]
     
     for fn in filenames:
-        response = urllib.request.urlopen(url_base+fn,'rt',encoding='utf-8')
-        reader = csv.reader(response)
+        ftpstream = urllib.request.urlopen(url_base+fn)
+        reader = csv.reader(ftpstream.read().decode('utf-8')) 
         line_count = 0
         for row in reader:
             if line_count == 0:
