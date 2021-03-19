@@ -2,10 +2,10 @@ from django.http import HttpResponse,JsonResponse
 import csv
 import os
 
-from .models import Forecast,Forecastsum
-from .queries import get_data,get_sum,get_count
-from .insertions import insert_forecast
-from .validations import validLatAndLon
+from './models' import Forecast,Forecastsum
+from './queries' import get_data,get_sum,get_count
+from './insertions' import insert_forecast
+from './validations' import validLatAndLon
 
 # Create your views here.
 def index(request):

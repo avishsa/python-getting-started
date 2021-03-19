@@ -1,5 +1,5 @@
-from .models import Forecast,Forecastsum
-from .utils import date_formatter
+from './models' import Forecast,Forecastsum
+from './utils' import date_formatter
 def insert_sumData(lon,lat,tMax,tMin,tAvg,pMax,pMin,pAvg):
     new_forecastsum = Forecastsum(
                     lon = lon,

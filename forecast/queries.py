@@ -1,8 +1,8 @@
 from django.core.serializers.json import DjangoJSONEncoder
 from django.forms.models import model_to_dict
 from django.db.models import Max,Min,Avg
-from .models import Forecast,Forecastsum
-from .insertions import insert_sumData
+from './models' import Forecast,Forecastsum
+from './insertions' import insert_sumData
 
 def get_count():
     return {'num forecasts':Forecast.objects.count()}
