@@ -34,7 +34,7 @@ def summarize(request):
 def seed(request):
     module_dir = os.path.dirname(__file__)  # get current directory
 #https://github.com/avishsa/python-getting-started/tree/main/forecast
-    url_base= 'https://github.com/avishsa/python-getting-started/master/'    
+    url_base= 'https://github.com/avishsa/python-getting-started/blob/main/forecast/'    
     filenames = ["file1.csv", "file2.csv", "file2.csv"]
     
     for fn in filenames:
