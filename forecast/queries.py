@@ -9,6 +9,28 @@ def get_count():
 def get_data(lon, lat):
     return list(Forecast.objects.filter(lon=lon,lat=lat).values("forecastTime", "Temperature","Precipitation"))
 def get_sum(lon,lat):
+    fcs_qs = list(Forecast.objects.filter(lon=lon,lat=lat))
+    tMax = fcs_qs.aggregate(Max('Temperature'))["Temperature__max"]
+    tMin = fcs_qs.aggregate(Min('Temperature'))["Temperature__min"]
+    tAvg = fcs_qs.aggregate(Avg('Temperature'))["Temperature__avg"]
+    pMax = fcs_qs.aggregate(Max('Precipitation'))["Precipitation__max"]
+    pMin = fcs_qs.aggregate(Min('Precipitation'))["Precipitation__min"]
+    pAvg = fcs_qs.aggregate(Avg('Precipitation'))["Precipitation__avg"]
+    return {
+            'max':{
+                "Temperature":tMax,
+                "Precipitation":pMax
+            },
+            'min':{
+                "Temperature":tMin,
+                "Precipitation":pMin
+            },
+            'avg' :{
+                "Temperature":tAvg,
+                "Precipitation":pAvg
+            }
+        }
+def gett_sum(lon,lat):
     return get_data(lon,lat)
     def get_json(tMax,tMin,tAvg,pMax,pMin,pAvg):
         return {
