@@ -9,7 +9,7 @@ def get_count():
 def get_data(lon, lat):
     return list(Forecast.objects.filter(lon=lon,lat=lat).values("forecastTime", "Temperature","Precipitation"))
 def get_sum(lon,lat):
-    fcs_qs = list(Forecast.objects.filter(lon=lon,lat=lat))
+    fcs_qs = Forecast.objects.filter(lon=lon,lat=lat)
     tMax = fcs_qs.aggregate(Max('Temperature'))["Temperature__max"]
     tMin = fcs_qs.aggregate(Min('Temperature'))["Temperature__min"]
     tAvg = fcs_qs.aggregate(Avg('Temperature'))["Temperature__avg"]
