@@ -1,6 +1,7 @@
 from django.http import HttpResponse,JsonResponse
 import csv
 import os
+import urllib2
 
 from './models' import Forecast,Forecastsum
 from './queries' import get_data,get_sum,get_count
@@ -32,19 +33,18 @@ def summarize(request):
 
 def seed(request):
     module_dir = os.path.dirname(__file__)  # get current directory
-    
+#https://github.com/avishsa/python-getting-started/tree/main/forecast
+    url_base= 'https://github.com/avishsa/python-getting-started/master/'    
     filenames = ["file1.csv", "file2.csv", "file2.csv"]
+    
     for fn in filenames:
-        file_path = os.path.join(module_dir, fn)
-        with open(fn) as f:            
-            reader = csv.reader(f , delimiter=',')
-            line_count = 0
-            for row in reader:
-                if line_count == 0:            
-                    line_count += 1
-                    continue
-                print(insert_forecast(row[0],row[1],row[2],row[3],row[4]))
-                if line_count==5:
-                    break
+        response = urllib2.urlopen(url_base+fn)
+        reader = csv.reader(response)
+        line_count = 0
+        for row in reader:
+            if line_count == 0:
+                line_count += 1                            
+                continue            
+            insert_forecast(row[0],row[1],row[2],row[3],row[4])
     return HttpResponse("done")
 
