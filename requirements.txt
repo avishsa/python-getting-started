@@ -1,4 +1,4 @@
 django
 gunicorn
 django-heroku
-pandas
+numpy==1.6.2
