@@ -38,7 +38,7 @@ def seed(request):
     filenames = ["file1.csv", "file2.csv", "file2.csv"]
     
     for fn in filenames:
-        response = urllib.request.urlopen(url_base+fn)
+        response = urllib.request.urlopen(url_base+fn,'rt',encoding='utf-8')
         reader = csv.reader(response)
         line_count = 0
         for row in reader:
