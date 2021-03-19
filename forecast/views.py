@@ -1,7 +1,6 @@
 from django.http import HttpResponse,JsonResponse
-import csv
-import os
-import urllib.request
+import pandas as pd
+
 
 from .models import Forecast,Forecastsum
 from .queries import get_data,get_sum,get_count
@@ -32,19 +31,18 @@ def summarize(request):
     return JsonResponse(get_sum(lon,lat),safe=False)
 
 def seed(request):
-    module_dir = os.path.dirname(__file__)  # get current directory
-#https://github.com/avishsa/python-getting-started/tree/main/forecast
-    url_base= 'https://github.com/avishsa/python-getting-started/blob/main/forecast/'    
-    filenames = ["file1.csv", "file2.csv", "file2.csv"]
     
-    for fn in filenames:
-        ftpstream = urllib.request.urlopen(url_base+fn)
-        reader = csv.reader(ftpstream.read().decode('utf-8')) 
-        line_count = 0
-        for row in reader:
-            if line_count == 0:
-                line_count += 1                            
-                continue            
-            insert_forecast(row[0],row[1],row[2],row[3],row[4])
+    filenames = ["file1.csv", "file2.csv", "file3.csv"]
+    for fn in filenames:        
+        url =f'https://github.com/avishsa/python-getting-started/raw/main/forecast/{fn}'
+        c = pd.read_csv(url)
+        for index, row in c.iterrows():
+            insert_forecast(row['Longitude'],
+                                row['Latitude'],
+                                row['forecast_time'],
+                                row['Temperature Celsius'],
+                                row['Precipitation Rate mm/hr']
+            )
     return HttpResponse("done")
+    
 
