@@ -4,7 +4,7 @@ from django.contrib import admin
 
 admin.autodiscover()
 
-import './forecast/views'
+import forecast.views
 # To add a new path, first import the app:
 # import blog
 #
