@@ -21,3 +21,4 @@ def insert_forecast(lon,lat,forecastTime,Temperature,Precipitation):
                     Precipitation = Precipitation 
                     ) 
     new_forecast.save()
+    return new_forecast;

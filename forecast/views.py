@@ -43,7 +43,8 @@ def seed(request):
                 if line_count == 0:            
                     line_count += 1
                     continue
-                insert_forecast(row[0],row[1],row[2],row[3],row[4])
-                
+                print(insert_forecast(row[0],row[1],row[2],row[3],row[4]))
+                if line_count==5:
+                    break
     return HttpResponse("done")
 
