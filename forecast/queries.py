@@ -44,5 +44,6 @@ def get_sum(lon,lat):
         preci_min,
         preci_avg)
         return get_json(temp_max,temp_min,temp_avg,preci_max,preci_min,preci_avg)
-    return get_json(fc_qs[0],fc_qs[1],fc_qs[2],fc_qs[3],fc_qs[4],fc_qs[5])
+    return get_json(fc_qs['temp_max'],fc_qs['temp_min'],fc_qs['temp_avg'],
+    fc_qs['Prec_max'],fc_qs['Prec_min'],fc_qs['Prec_avg'])
     
