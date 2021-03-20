@@ -13,7 +13,7 @@ def index(request):
 def count_data(request):
     return JsonResponse(get_count())
 def defaultResponse(request):
-    return JsonResponse('msg':'Invalid url path')
+    return JsonResponse({'msg':'Invalid url path'})
 def data(request):
     lat = request.GET.get('lat')
     lon = request.GET.get('lon')

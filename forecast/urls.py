@@ -19,6 +19,6 @@ urlpatterns = [
     
     path("weather/seed", forecast.views.seed, name="seed"),
     path("weather/count", forecast.views.count_data, name="count_data"),
-    # path("*",forecast.views.defaultResponse, name="defaultResponse")
+    path("*",forecast.views.defaultResponse, name="defaultResponse")
     #path("admin/", admin.site.urls),
 ]
