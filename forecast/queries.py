@@ -8,7 +8,9 @@ def get_count():
     return {'num forecasts':Forecast.objects.count()}
 def get_data(lon, lat):
     res = list(Forecast.objects.filter(lon=lon,lat=lat).values("forecastTime", "Temperature","Precipitation"))
-    return len(res) ==0 if {'msg':'not found location'} else res    
+    if (len(res) ==0):
+        return {'msg':'not found location'}
+    return res    
 
 def get_sum(lon,lat):
     def get_json(tMax,tMin,tAvg,pMax,pMin,pAvg):
