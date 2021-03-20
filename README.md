@@ -1,9 +1,22 @@
-# Python: Getting Started
+# WeatherAvishag: get your forecast data
 
 A barebones Django app, which can easily be deployed to Heroku.
 
 This application supports the [Getting Started with Python on Heroku](https://devcenter.heroku.com/articles/getting-started-with-python) article - check it out.
 
+## requests
+### weather/data
+required parameters: 
+lat - type float
+lon - type float
+returns all db records that are forecasts of the given location
+### weather/summerize
+required parameters: 
+lat - type float
+lon - type float
+return the min,max,avg values of temperaure and precipitation of the given location
+### weather/seed
+import csv file to database
 ## Running Locally
 
 Make sure you have Python 3.7 [installed locally](http://install.python-guide.org). To push to Heroku, you'll need to install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli), as well as [Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup).
