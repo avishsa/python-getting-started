@@ -34,10 +34,9 @@ def summarize(request):
     return JsonResponse(get_sum(lat,lon),safe=False)
 
 def seed(request):
-    
     filenames = ["file1.csv", "file2.csv", "file3.csv"]
     for fn in filenames:        
-        url =f'https://github.com/avishsa/python-getting-started/raw/main/forecast/{fn}'
+        url =f'https://github.com/avishsa/weatherAvishag/raw/main/forecast/{fn}'
         c = pd.read_csv(url)
         for index, row in c.iterrows():
             insert_forecast(row['Longitude'],
