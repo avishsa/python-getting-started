@@ -28,8 +28,8 @@ def summarize(request):
     if(err is not None):
         return JsonResponse(err) 
     # return HttpResponse("vdss")   
-    
-    return JsonResponse(get_sum(lon,lat),safe=False)
+
+    return JsonResponse(get_sum(lat,lon),safe=False)
 
 def seed(request):
     
